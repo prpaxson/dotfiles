@@ -6,6 +6,7 @@ echo -e "\x1B[1;36mQuote of the day:"
 # ~/.profile
 fortune
 
+# Colors
 RED='\[\e[91m\]'
 BOLDYELLOW='\[\e[1;33m\]'
 GREEN='\[\e[0;32m\]'
@@ -18,19 +19,32 @@ LIGHTBLUE='\[\033[1;36m\]'
 PURPLE='\[\e[1;35m\]'
 NC='\[\e[0m\]' # No Color
 
-export PS1="${BLUE}\\u ${BOLDYELLOW}[\\w] ${PURPLE}\$(parse_git_branch)${DARKCUSTOMCOLORMIX}$ ${NC}"
-
+# Shows the git branch if the directory is part of a GitHub repo
 parse_git_branch()
 {
- git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+ 	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-OpenInXcode()
+# Git commit shortened
+git_quick_commit()
+{
+	git add -A
+	if [ $# -eq 0 ]; then
+    	git commit -m "Pushing Quick Commit";
+	else
+    	git commit -m "$*";
+	fi
+	git push;
+}
+
+# Opens a file in XCode
+open_in_xcode()
 {
 	touch "$@"
 	open -a Xcode "$@"
 }
 
+# SSH aliases
 alias robosub='ssh robosub@acsweb.ucsd.edu'
 
 export -f parse_git_branch
@@ -40,30 +54,28 @@ alias ls='ls -GFh'
 alias hs='history | grep '  # Automatically filter your bash history
 alias la='ls -a'  # E-Z-P-Z see everything
 alias mv='mv -i'  # Prompts before overwriting
-alias cp='cp -i'
+alias cp='cp -i'  
 alias rm='rm -i'
 alias dog='cat'
-alias gitc='sh ~/.gitc/main.sh'
+alias gitc='git_quick_commit' 
 alias snow='bash ~/snow'
-alias xcode='OpenInXcode'
-ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
+alias xcode='open_in_xcode'
 alias cd..='cd ../'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias .2='cd ../../'
 alias .3='cd ../../../'
-alias .4='cd ../../../../'k
+alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
 alias .6='cd ../../../../../../'
+
+# Defines the command line appearance
+export PS1="${BLUE}\\u ${BOLDYELLOW}[\\w] ${PURPLE}\$(parse_git_branch)${DARKCUSTOMCOLORMIX}$ ${NC}"
 
 # Setting PATH for Python 3.6
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
-
-##
-# Your previous /Users/prpaxson/.bash_profile file was backed up as /Users/prpaxson/.bash_profile.macports-saved_2019-01-28_at_14:09:44
-##
 
 # MacPorts Installer addition on 2019-01-28_at_14:09:44: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
