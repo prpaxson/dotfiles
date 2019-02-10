@@ -46,6 +46,7 @@ alias dog='cat'
 alias gitc='sh ~/.gitc/main.sh'
 alias snow='bash ~/snow'
 alias xcode='OpenInXcode'
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
 alias cd..='cd ../'
 alias ..='cd ../'
 alias ...='cd ../../'
