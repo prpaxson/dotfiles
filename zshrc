@@ -158,7 +158,7 @@ export PATH="$HOME/.local/bin:$PATH"
 PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
 
-# MacPorts Installer addition on 2019-01-28_at_14:09:44: adding an appropriate PATH variable for use with MacPorts.
+# MacPorts Installer addition adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
@@ -269,7 +269,6 @@ alias extract='unarchive'
 alias e='FZFEditor'
 alias gitc='git_quick_commit'
 alias xcode='open_in_xcode'
-export -f parse_git_branch
 
 # SSH aliases
 alias robosub='ssh robosub@acsweb.ucsd.edu'
