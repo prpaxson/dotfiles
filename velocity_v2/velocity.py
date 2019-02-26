@@ -172,10 +172,10 @@ def getSpotifyInfo():
     name        = name.decode(encoding).rstrip()
     artist      = artist.decode(encoding).rstrip()
 
-    fieldLength = int(getTmuxOption("@SPOTIFYFIELDLENGTH", "g", "20"))
+    fieldLength = int(getTmuxOption("@SPOTIFYFIELDLENGTH", "g", "40"))
     name        = name[:fieldLength-2]+".." if len(name) > fieldLength else name
     artist      = artist[:fieldLength-2]+".." if len(artist) > fieldLength else artist
-    return name + " - " + artist, state
+    return artist.upper() + " /// " + name, state
 
 def getSongTickText():
     tick = int(subprocess.check_output(shlex.split("osascript -e 'tell application \"Spotify\" to return player position / ((duration of current track) / 1000) * 10 as integer'")))
@@ -212,11 +212,11 @@ def promptMain():
     segments = []
 
     if theme == 'light':
-        hostFormat        = Format('black', 'blue')
-        dirFormat         = Format('black', 'cyan')
-        gitCleanFormat    = Format('black', 'green')
-        gitDirtyFormat    = Format('black', 'yellow')
-        gitDetachedFormat = Format('black', 'red')
+        hostFormat        = Format('blue', 'white')
+        dirFormat         = Format('yellow', 'white')
+        gitCleanFormat    = Format('magentak', 'white')
+        gitDirtyFormat    = Format('green', 'white')
+        gitDetachedFormat = Format('red', 'white')
     else:
         hostFormat        = Format('red', 'black')
         dirFormat         = Format('yellow', 'black')
@@ -291,14 +291,19 @@ def tmuxStatusRightMain():
     if not getTmuxOption("@NOSPOTIFY", "g", "") == "true":
         spotifyInfo = getSpotifyInfo()
         if spotifyInfo[1] == "playing":
-            segments.append(Segment(spotifyInfo[0], Format('black', 'brightgreen')))
+            segments.append(Segment(spotifyInfo[0], Format('black', 'brightcyan')))
             if not getTmuxOption("@NOSONGTICK", "g", "") == "true":
-                segments.append(Segment(getSongTickText(), Format('black', 'brightgreen')))
+                segments.append(Segment(getSongTickText(), Format('black', 'brightcyan')))
 
     if getTmuxOption("@SHORTDATE", "g", "") == "true":
         segments.append(Segment(getShortDateText(), Format('black', 'brightyellow')))
     else:
-        segments.append(Segment(getDateText(), Format('black', 'brightyellow')))
+        hour = datetime.datetime.now().hour
+        # night
+        if (hour > 17) or (hour < 6):
+            segments.append(Segment(getDateText(), Format('black', 'blue')))
+        else:
+            segments.append(Segment(getDateText(), Format('black', 'brightyellow')))
 
     sys.stdout.write("#{?client_prefix,"+resolveTmux(segments, True))
 

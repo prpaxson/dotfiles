@@ -145,7 +145,7 @@ fi
 # Set environment variables
 export CC=clang
 export CXX=clang++
-export EDITOR=nvim
+export EDITOR=vim
 export EDITOR_OPTS="-p"
 export LANG=en_US.UTF-8
 export KEYTIMEOUT=1
@@ -276,7 +276,6 @@ alias robosub='ssh robosub@acsweb.ucsd.edu'
 # General aliases
 alias ls='ls -GFh'
 alias la='ls -A'
-alias sl='ls'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -v'
@@ -333,3 +332,4 @@ fi
 if [[ $OS == "Linux" && -z "$DISPLAY" && -n "$XDG_VTNR" && "$XDG_VTNR" -eq 1 ]]; then
     exec startx
 fi
+export PATH="/usr/local/opt/opencv@2/bin:$PATH"
