@@ -281,3 +281,5 @@ scratch*
 # Build directory
 build
 
+# idea
+.idea/

@@ -232,6 +232,7 @@ Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/wellle/targets.vim.git'
 Plug 'https://github.com/easymotion/vim-easymotion.git'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 call plug#end()
 
 " Plugin Configurations
