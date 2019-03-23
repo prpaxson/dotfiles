@@ -74,7 +74,7 @@ if executable('rg')
 endif
 
 if $OS == 'Mac'
-    let g:clang_format_file_path="/opt/local/libexec/llvm-6.0/share/clang/clang-format.py"
+    let g:clang_format_file_path="/usr/local/bin/clang-format"
 elseif $OS == 'Linux'
     let g:clang_format_file_path="/usr/share/clang/clang-format.py"
 endif
@@ -156,7 +156,7 @@ endfunction
 " Run clang-format on current file
 function! ClangFormatCurrentFile()
     let l:lines="all"
-    execute "pyf " . fnameescape(g:clang_format_file_path)
+    " execute "py3f " . fnameescape(g:clang_format_file_path)
 endfunction
 
 

@@ -118,7 +118,7 @@ def resolveTmux(segments, backwards):
 def getHostText():
     username = pwd.getpwuid(os.getuid())[0]
     hostname = os.uname()[1]
-    return username
+    return username.lstrip()
 
 def getDirectoryText():
     username = pwd.getpwuid(os.getuid())[0]
@@ -283,8 +283,10 @@ def tmuxStatusRightMain():
             batteryAmt  = int(batteryInfo[1])
             if batteryAmt < 20:
                 segments.append(Segment(batteryInfo[0]+batteryInfo[1]+"%", Format('black', 'red')))
-            elif batteryAmt < 100:
+            elif batteryAmt < 50:
                 segments.append(Segment(batteryInfo[0]+batteryInfo[1]+"%", Format('black', 'yellow')))
+            elif batteryAmt < 100:
+                segments.append(Segment(batteryInfo[0]+batteryInfo[1]+"%", Format('black', 'green')))
             else:
                 segments.append(Segment((batteryInfo[0] if batteryInfo[0] == "Battery: " else "Charged: ")+batteryInfo[1]+"%", Format('black', 'green')))
 
