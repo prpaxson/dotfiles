@@ -1,5 +1,14 @@
 # dotfiles
 Configuration files for Unix programs
+## Installation
+1. Clone the repository:
+    - `git clone https://github.com/prpaxson/dotfiles.git`
+2. Go into the directory
+    - `cd dotfiles`
+3a. Install prerequisites and copy dotfiles:
+    - make install
+3b. If prereqs are already installed:
+      - make
 ## Requirements
 ### z-shell
 - [zsh](https://www.zsh.org/)
