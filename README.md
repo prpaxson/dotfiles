@@ -5,10 +5,10 @@ Configuration files for Unix programs
     - `git clone https://github.com/prpaxson/dotfiles.git`
 2. Go into the directory
     - `cd dotfiles`
-3a. Install prerequisites and copy dotfiles:
+3. Install prerequisites and copy dotfiles:
     - make install
-3b. If prereqs are already installed:
-      - make
+- If prereqs are already installed:
+    - make
 ## Requirements
 ### z-shell
 - [zsh](https://www.zsh.org/)
