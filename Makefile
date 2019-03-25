@@ -1,7 +1,7 @@
 # Makefile for implementing all dotfiles
 
-.PHONY: default all zsh tmux vim bash yank yankzsh yanktmux yankvim yankbash
-.SILENT: default all zsh tmux vim bash yank yankzsh yanktmux yankvim yankbash
+.PHONY: default all zsh tmux vim bash yank yankzsh yanktmux yankvim yankbash install
+.SILENT: default all zsh tmux vim bash yank yankzsh yanktmux yankvim yankbash install
 
 VELOCITY=velocity_v2
 
